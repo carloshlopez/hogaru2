@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  text: MyText
+  expiration_date: 2018-09-17 23:12:30
+  user: one
+
+two:
+  text: MyText
+  expiration_date: 2018-09-17 23:12:30
+  user: two

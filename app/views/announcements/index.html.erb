@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Announcements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th>Expiration date</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @announcements.each do |announcement| %>
+      <tr>
+        <td><%= announcement.text %></td>
+        <td><%= announcement.expiration_date %></td>
+        <td><%= announcement.user %></td>
+        <td><%= link_to 'Show', announcement %></td>
+        <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
+        <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Announcement', new_announcement_path %>

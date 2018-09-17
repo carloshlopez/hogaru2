@@ -1,14 +1,26 @@
 <p id="notice"><%= notice %></p>
+<h2>Your profile</h2>
+  <% if @user.first_name %>
+  <p>
+    <strong>First name:</strong>
+    <%= @user.first_name %>
+  </p>
+  
+  <p>
+    <strong>Last name:</strong>
+    <%= @user.last_name %>
+  </p>
+  <%= link_to 'Edit your profile', edit_user_path(@user) %>
+  <h3>Your announcements</h3>
+  <% if @user.announcements and @user.announcements.size > 0 %>
+    <% @user.announcements.each do |announcement| %>
+      <li><%= announcement.text %> - Expires on: <%= announcement.expiration_date.to_s(:long) %>  </li>
+    <% end %>
+    <%= link_to 'Create an announcement HERE', new_announcement_path %>
+  <% else %>
+    <%= link_to 'Create your first announcement HERE', new_announcement_path %>
+  <% end %>
+<% else %>
+  <%= link_to 'Please complete your profile HERE', edit_user_path(@user) %>
+<% end %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
