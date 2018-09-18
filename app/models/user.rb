@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   #validates :first_name, :last_name, presence: true
   has_many :announcements
+  has_many :seen_announcements
+  
+  def name
+    "#{self.last_name}, #{self.first_name}"
+  end
+  
 end

@@ -1,11 +1,14 @@
 class AnnouncementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_announcement, only: [:show, :edit, :update, :destroy]
+  before_action :set_announcement, only: [:show, :edit, :update, :destroy, :mark_as_seen]
 
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.all
+    #@announcements = Announcement.all
+    #TODO this might be donde cleaner in another way
+    @announcements = Announcement.where("announcements.id NOT IN 
+    (SELECT seen_announcements.announcement_id from seen_announcements where seen_announcements.user_id = #{current_user.id})")
   end
 
   # GET /announcements/1
@@ -61,11 +64,20 @@ class AnnouncementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def mark_as_seen
+    @announcement.seen_announcements.create(user_id: current_user.id)
+    respond_to do |format|
+      format.html { redirect_to announcements_url, notice: 'Announcement was successfully marked as seen.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_announcement
-      @announcement = Announcement.find(params[:id])
+      id = params[:id] || params[:announcement_id]
+      @announcement = Announcement.find(id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

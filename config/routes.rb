@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   
-  resources :announcements
+  resources :announcements do 
+    get 'mark_as_seen'
+  end
   devise_for :users, controllers: { sessions: 'users/sessions' }, 
     path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'sign_up' }
 

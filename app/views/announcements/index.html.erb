@@ -7,8 +7,8 @@
     <tr>
       <th>Text</th>
       <th>Expiration date</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Posted By</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -17,10 +17,8 @@
       <tr>
         <td><%= announcement.text %></td>
         <td><%= announcement.expiration_date %></td>
-        <td><%= announcement.user %></td>
-        <td><%= link_to 'Show', announcement %></td>
-        <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
-        <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= announcement.user.name %></td>
+        <td><%= link_to 'Mark as seen', announcement_mark_as_seen_path(announcement) %></td>
       </tr>
     <% end %>
   </tbody>
