@@ -7,14 +7,6 @@
 
 <p>
   <strong>Expiration date:</strong>
-  <%= @announcement.expiration_date %>
+  <%= @announcement.expiration_date.to_s(:long) %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @announcement.user %>
-</p>
-
-<%= link_to 'Mark as seen', announcement_mark_as_seen_path(@announcement) %> |
-<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
-<%= link_to 'Back', announcements_path %>

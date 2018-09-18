@@ -20,13 +20,23 @@
     <%= form.label :expiration_date %>
     <%= form.datetime_select :expiration_date, id: :announcement_expiration_date %>
   </div>
+<!--  <input type="text" class="span2" id="announcement_expiration_date" name= "announcement[expiration_date]" value="09/18/2018 12:05">-->
+<!--<script>-->
+<!--$(function(){-->
+<!--  $('#announcement_expiration_date').fdatepicker({-->
+<!--		format: 'mm/dd/yyyy hh:ii',-->
+<!--		disableDblClickSelection: true,-->
+<!--		pickTime: true-->
+<!--	});-->
+<!--});-->
+<!--</script>-->
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :announcement_user_id %>
+
+  <div class="hidden_field">
+    <%= form.hidden_field :user_id, id: :announcement_user_id, value: current_user.id %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "button primary" %>
   </div>
 <% end %>

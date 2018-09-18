@@ -10,17 +10,19 @@
     <strong>Last name:</strong>
     <%= @user.last_name %>
   </p>
-  <%= link_to 'Edit your profile', edit_user_path(@user) %>
+  <%= link_to 'Edit your profile', edit_user_path(@user), class: "button secondary" %>
   <h3>Your announcements</h3>
   <% if @user.announcements and @user.announcements.size > 0 %>
     <% @user.announcements.each do |announcement| %>
-      <li><%= announcement.text %> - Expires on: <%= announcement.expiration_date.to_s(:long) %>  </li>
+      <li><%= announcement.text %> - Expires on: <%= announcement.expiration_date.to_s(:long) %> - <%= link_to 'Edit', edit_announcement_path(announcement)%>  </li>
     <% end %>
-    <%= link_to 'Create an announcement HERE', new_announcement_path %>
+    <br/>
+    <%= link_to 'Create an announcement HERE', new_announcement_path, class: "button primary" %>
   <% else %>
-    <%= link_to 'Create your first announcement HERE', new_announcement_path %>
+    <br/>
+    <%= link_to 'Create your first announcement HERE', new_announcement_path, class: "button primary" %>
   <% end %>
 <% else %>
-  <%= link_to 'Please complete your profile HERE', edit_user_path(@user) %>
+  <%= link_to 'Please complete your profile HERE', edit_user_path(@user), class: "button primary" %>
 <% end %>
 

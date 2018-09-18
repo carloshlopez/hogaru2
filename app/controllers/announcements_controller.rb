@@ -7,8 +7,8 @@ class AnnouncementsController < ApplicationController
   def index
     #@announcements = Announcement.all
     #TODO this might be donde cleaner in another way
-    @announcements = Announcement.where("announcements.id NOT IN 
-    (SELECT seen_announcements.announcement_id from seen_announcements where seen_announcements.user_id = #{current_user.id})")
+    @announcements = Announcement.where("announcements.expiration_date > ? AND announcements.id NOT IN 
+    (SELECT seen_announcements.announcement_id from seen_announcements where seen_announcements.user_id = #{current_user.id})", DateTime.now)
   end
 
   # GET /announcements/1

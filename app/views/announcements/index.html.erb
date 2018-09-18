@@ -16,7 +16,7 @@
     <% @announcements.each do |announcement| %>
       <tr>
         <td><%= announcement.text %></td>
-        <td><%= announcement.expiration_date %></td>
+        <td><%= announcement.expiration_date.to_s(:long) %></td>
         <td><%= announcement.user.name %></td>
         <td><%= link_to 'Mark as seen', announcement_mark_as_seen_path(announcement) %></td>
       </tr>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Announcement', new_announcement_path %>
+<%= link_to 'New Announcement', new_announcement_path, class: "button primary" %>
