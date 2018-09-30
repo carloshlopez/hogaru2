@@ -18,7 +18,7 @@
   <div class="top-bar stacked-for-medium" id="example-menu">
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="/">Hogaru Announcements</a></li>
+        
         <% if user_signed_in? %>
           <li>
           <%= link_to('View all Announcements', announcements_path) %>        
@@ -30,6 +30,7 @@
           <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
           </li>
         <% else %>
+          <li><a href="/">Hogaru Announcements</a></li>
           <li>
           <%= link_to('Login', new_user_session_path)  %>  
           </li>
